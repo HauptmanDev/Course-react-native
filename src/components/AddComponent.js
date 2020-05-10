@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TextInput, Button, Alert} from 'react-native';
+import {StyleSheet, View, TextInput, Keyboard, Alert} from 'react-native';
 import {THEME} from "../theme";
+import {AntDesign} from '@expo/vector-icons'
 
 export const AddComponent = ({onSubmit}) => {
     const [value, setValue] = useState('');
@@ -9,6 +10,7 @@ export const AddComponent = ({onSubmit}) => {
         if (value.trim()) {
             onSubmit(value);
             setValue('');
+            Keyboard.dismiss();
         } else {
             Alert.alert('Не может быть пустым')
         }
@@ -22,7 +24,7 @@ export const AddComponent = ({onSubmit}) => {
                        autoCorrect={false}
                        autoCapitalize='none'
             />
-            <Button title='Добавить' onPress={pressHandler}/>
+            <AntDesign.Button name='pluscircleo' onPress={pressHandler}>Добавить</AntDesign.Button>
         </View>
     )
 };

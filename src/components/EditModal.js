@@ -1,12 +1,15 @@
 import React, {useState} from 'react'
-import {StyleSheet, View, TextInput, Button, Modal, Alert} from 'react-native'
+import {StyleSheet, View, TextInput, Modal, Alert} from 'react-native'
+
 import {THEME} from "../theme";
+import {AppButton} from "./ui/AppButton";
+import {AntDesign} from "@expo/vector-icons";
 
 export const EditModal = ({visible, onCancel, value, onSave}) => {
     const [title, setTitle] = useState(value);
     const saveHandler = () => {
         if (title.trim().length < 3) {
-            Alert.alert('Не меньше трех символов')
+            Alert.alert('Недопустимая длина', 'Не менее трех символов')
         } else {
             onSave(title);
         }
@@ -24,8 +27,13 @@ export const EditModal = ({visible, onCancel, value, onSave}) => {
                     maxLength={60}
                 />
                 <View style={styles.button}>
-                    <Button title='Сохранить' onPress={saveHandler} color={THEME.GREY_COLOR}/>
-                    <Button title='Отменить' onPress={onCancel} color={THEME.DANGER_COLOR}/>
+                    <AppButton onPress={onCancel} color={THEME.DANGER_COLOR}>
+                        Отменить
+                    </AppButton>
+                    <AppButton onPress={saveHandler} color={THEME.GREY_COLOR}>
+                        Сохранить
+                    </AppButton>
+
                 </View>
             </View>
         </Modal>
