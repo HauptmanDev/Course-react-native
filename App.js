@@ -4,6 +4,7 @@ import {AppLoading} from 'expo'
 
 import {MainLayout} from "./src/MainLayout";
 import {TodoState} from "./src/context/todo/TodoState";
+import {ScreenState} from "./src/context/screen/ScreenState";
 
 async function loadApplication() {
     await Font.loadAsync({
@@ -21,6 +22,6 @@ export default function App() {
                            onFinish={() => setIsReady(true)}/>
     }
 
-    return <TodoState><MainLayout/></TodoState>;
+    return <ScreenState><TodoState><MainLayout/></TodoState></ScreenState>;
 };
 
